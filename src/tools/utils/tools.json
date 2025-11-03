@@ -1,0 +1,149 @@
+[
+    {
+        "name": "utils:create_global_entity",
+        "description": "创建全局共享实体，该实体可在所有居民间共享和访问。注意：每个居民有每日创建配额限制。",
+        "parameters": {
+            "entityData": "object | 实体数据对象",
+            "description": "string | 实体描述"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:get_global_entity",
+        "description": "根据实体ID获取全局共享实体的详细信息",
+        "parameters": {
+            "entityId": "string | 全局实体ID"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:explore_entities",
+        "description": "探索发现环境中的实体。可以按位置、类型过滤，或发现随机实体。这是发现可用实体的主要方式。",
+        "parameters": {
+            "location": {
+                "type": "string",
+                "optional": true,
+                "description": "区域名称：kitchen(厨房)、bedroom(卧室)、garden(花园)"
+            },
+            "entityType": {
+                "type": "string",
+                "optional": true,
+                "description": "实体类型：food(食物)、tool(工具)、furniture(家具)、plant(植物)"
+            },
+            "limit": {
+                "type": "number",
+                "optional": true,
+                "description": "返回实体的最大数量，默认5个"
+            },
+            "random": {
+                "type": "boolean",
+                "optional": true,
+                "description": "是否随机返回实体，默认为true"
+            }
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:check_quota",
+        "description": "检查当前居民的实体创建配额使用情况。了解你还能创建多少实体。",
+        "parameters": {
+            "entityType": {
+                "type": "string",
+                "optional": true,
+                "description": "要检查的实体类型：food、tools、plants、furniture。不指定则返回所有配额信息"
+            }
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:claim_entity",
+        "description": "声明对无主实体的所有权。拥有实体后，其他居民需要你的许可才能使用。",
+        "parameters": {
+            "entityId": "string | 要声明的实体ID"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:consume_food",
+        "description": "食用食物实体来缓解饥饿。只能食用自己拥有或无主的食物实体。食用后会消耗食物实体并恢复饥饿值。",
+        "parameters": {
+            "foodEntityId": "string | 要食用的食物实体ID"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:lend_entity",
+        "description": "将你拥有的实体暂时借给其他居民使用。借出后，借入者可以在指定时间内使用该实体。",
+        "parameters": {
+            "entityId": "string | 要借出的实体ID",
+            "toResidentId": "string | 借入者的居民ID",
+            "duration": "number | 借用时间（秒），建议60-300秒"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:return_entity",
+        "description": "归还借用的实体。如果实体是从其他居民那里借来的，使用此操作归还。",
+        "parameters": {
+            "entityId": "string | 要归还的实体ID"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:send_message",
+        "description": "向指定居民发送私有消息，用于居民间的直接通信",
+        "parameters": {
+            "toAgentId": "string | 目标居民的ID",
+            "content": "string | 消息内容"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:broadcast_message",
+        "description": "向所有居民广播消息，用于发布公告或共享信息",
+        "parameters": {
+            "content": "string | 广播消息内容"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:wait_for_some_time",
+        "description": "等待指定时间，当你在等待其他居民时使用此操作，务必用等待时间来避免连续不执行操作",
+        "parameters": {
+            "time": "number | 等待的秒数，建议为10-30秒"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:use_tool",
+        "description": "使用工具对目标实体执行动作。例如：用菜刀切苹果创建食物，用水壶浇花促进植物生长。需要实体所有权或实体无主，或者实体被借给你使用。",
+        "parameters": {
+            "toolEntityId": "string | 工具实体ID",
+            "targetEntityId": "string | 目标实体ID"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:move_to",
+        "description": "移动到指定区域，改变居民的位置。区域包括：kitchen(厨房)、bedroom(卧室)、garden(花园)",
+        "parameters": {
+            "location": "string | 区域名称"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:rest",
+        "description": "使用家具实体休息，恢复精力。例如使用床来休息。需要家具所有权或家具无主，或者家具被借给你使用。",
+        "parameters": {
+            "furnitureEntityId": "string | 家具实体ID"
+        },
+        "isMeta": false
+    },
+    {
+        "name": "utils:leave_world",
+        "description": "你将会离开世界",
+        "parameters": {
+            "message": "string | 为世界留下的消息"
+        }
+    }
+]
