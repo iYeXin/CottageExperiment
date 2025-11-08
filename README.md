@@ -6,6 +6,14 @@ A prototype implementation of Environment AI paradigm.
 
 环境 AI 范式的原型实现。
 
+## Experimental Data in The Paper
+
+## 论文中的实验数据
+
+For our original experimental data see: `/digital_cottage_records.json`
+
+我们的原始实验数据参见：`/digital_cottage_records.json`
+
 ## Environment requirements
 
 ## 环境要求
